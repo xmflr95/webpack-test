@@ -17,7 +17,12 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['@babel/plugin-syntax-top-level-await'],
+          }
+        },
       },
     ],
   },
@@ -32,5 +37,9 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
     },
+  },
+
+  experiments: {
+    topLevelAwait: true,
   },
 };

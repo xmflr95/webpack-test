@@ -1,25 +1,15 @@
 import 'moment';
+import MainPage from './pages/MainPage';
+import OtherPage from './pages/OtherPage';
+import Router from './Router';
 
-import './public/style.css'
 import './public/styles.scss';
 
 console.log(">>>>> Hello Webpack");
 
-const getTodos = () => import('./public/api');
+const pages = [
+  { page: MainPage, path: 'main' },
+  { page: OtherPage, path: 'other' },
+];
 
-const app = document.getElementById('root');
-
-const box = document.createElement('div');
-box.id = 'box';
-
-app.appendChild(box);
-
-// logic
-const btn = document.getElementById('btn');
-btn.addEventListener('click', () => {
-  console.log(getTodos);
-  getTodos().then(({ fetchTodos }) => {
-    console.log(fetchTodos);
-    fetchTodos().then(resp => console.log(resp));
-  });
-});
+const router = new Router({ pages });
